@@ -1,5 +1,8 @@
 'use strict';
 
+// if don't work, probably the problem is here into the URL 
+// change here !
+const jsonUrl = '/static/games.json'
 
 // general var
 let games; // object from the games.json JSON
@@ -57,7 +60,7 @@ function refreshPrice(){ // calc the price
     const total_price = document.querySelector(".cart__total") // get the field of the price
     let currentPrice = 0 // reset de current price
     cart.forEach(element => { // for each element in cart add price to all prices
-        currentPrice += element.price
+        element?currentPrice += element.price:currentPrice += 0
     })
 
     total_price.innerHTML = currentPrice.toString().replace('.',',') // put the new current price into the field 
@@ -89,7 +92,7 @@ function init(){ // the first function to run
 
 function loadJson(){ // load the json
     let ajax = new XMLHttpRequest() // create a XMLHTTPREQUEST (it's ok but i really like more the fetchAPI :c)
-    ajax.open('GET','/static/games.json') // open a connection with the games.json
+    ajax.open('GET',jsonUrl) // open a connection with the games.json
     ajax.onreadystatechange = () => { // wait it get ready
         if(ajax.status === 200 && ajax.readyState == 4){ // when it get ready
             games = JSON.parse(ajax.responseText) // parse the json to object and store it
@@ -213,7 +216,8 @@ function addToCart(){ // add the itens into the cart
     cart.push({ // add these infos to the cart
         'type':getAboutTheGame(gameType)['type'],
         'price':getAboutTheGame(gameType)['price'],
-        'numbers':numbers_str
+        'numbers':numbers_str,
+        'id':cart.length
     }) //  it's just the infos about the bet
     items_container.innerHTML += `
                 <div class="cart__item" id='cart_item_${cart.length - 1}'>
@@ -245,8 +249,7 @@ function addToCart(){ // add the itens into the cart
 function deleteCartItem(event){
     const parent = event.target.closest(".cart__item") // get the parent item of the remove button
     const item = parent.id.match((/[0-9]+$/gmi)) // get the id of it
-    
-    cart.splice(parseInt(item),1) // delete the item from the cart list
+    cart[parseInt(item)] = null// delete the item from the cart list
     parent.remove() // delete the item (visible)
     refreshPrice()
 }

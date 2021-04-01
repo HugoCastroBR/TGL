@@ -184,7 +184,7 @@ body {
 
 .cart__item__desc {
   width: calc(100% - 30px);
-  border-left: 4px solid red;
+  border-left: 4px solid #27C383;
   border-radius: 4px 0px 0px 4px;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -221,7 +221,7 @@ body {
   font-family: Helvetica Neue Bold;
   font-style: italic;
   font-size: 16px;
-  color: red;
+  color: #27C383;
 }
 
 .cart__item__price {
@@ -360,12 +360,12 @@ body {
   padding-left: 10px;
   padding-right: 10px;
   border-radius: 50px;
-  border: 2px solid red;
+  border: 2px solid #27C383;
   background-color: transparent;
   height: 32px;
   font-family: Helvetica Neue Bold;
   font-style: italic;
-  color: red;
+  color: #27C383;
   margin-right: 25px;
 }
 
