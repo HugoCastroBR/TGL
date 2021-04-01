@@ -1,0 +1,408 @@
+// Fonts Alternative 
+@font-face{
+    font-family: "Helvetica Neue Ultra Light";
+    src: url("../fonts/Sans\ Ultra\ Light.ttf");
+}
+@font-face{
+    font-family: "Helvetica Neue Thin";
+    src: url("../fonts/Pragmatica\ Extra\ Light.ttf");
+}
+@font-face{
+    font-family: "Helvetica Neue Light";
+    src: url("../fonts/Nimbus\ Sans\ Light.ttf");
+}
+@font-face{
+    font-family: "Helvetica Neue Roman";
+    src: url("../fonts/Free\ Sans\ Regular.ttf");
+}
+@font-face{
+    font-family: "Helvetica Neue Medium";
+    src: url("../fonts/Pragmatica\ Medium.otf");
+}
+@font-face{
+    font-family: "Helvetica Neue Bold";
+    src: url("../fonts/Free\ Sans\ Bold.ttf");
+}
+@font-face{
+    font-family: "Helvetica Neue Heavy";
+    src: url("../fonts/Warownia\ Ultra.otf");
+}
+
+$background_color:#F7F7F7;
+$float_block_background_color:#fff;
+
+$highlight_font_color:#707070;
+$desc_font_color:#868686;
+$bet_number_color:#ADC0C4;
+
+$highlight_item_color: #27C383;
+
+body{
+    background-color: $background_color;
+    overflow-x: hidden;
+}
+
+.header__container{
+    background-color: $background_color;
+    height: 75px;
+    display: flex;
+    max-width: 1200px;
+    width: 100vw;
+    padding-left: calc((100vw - 1200px)/2);
+    padding-right: calc((100vw - 1200px)/2);
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 2px solid #EBEBEB;
+}
+.header__container::before{
+    position: absolute;
+    content: "";
+    width: 107px;
+    height: 7px;
+    background-color: #B5C401;
+    margin-top: 75px;
+    margin-left: -11px;
+    border-radius: 6px;
+}
+
+.header__item{
+    width: 200px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 100%;
+}
+
+.header__text{
+    font-size: 20px;
+    font-family: Helvetica Neue Bold;
+    font-style: italic;
+    color: $highlight_font_color;   
+    text-decoration: none;
+}
+
+.header__text--main{
+    font-size: 44px;
+}
+
+.Logout__arrow{
+    width: 20px;
+    height: 19px;
+}
+
+.content__container{
+    padding-top: 40px;
+    width: 1200px;
+    height: auto;
+    min-height: calc(100vh - 194px);
+    padding-left: calc((100vw - 1200px)/2);
+    padding-right: calc((100vw - 1200px)/2);
+    display: flex;
+    justify-content: space-between;
+    overflow-x: hidden;
+    
+}
+.cart__container{
+    height: min-content;
+    width: 318px;
+    background-color: $float_block_background_color;
+    border-radius: 10px;
+    border: 1px solid #E2E2E2;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+
+.cart__container__title{
+    color: $highlight_font_color;
+    font-family: Helvetica Neue Bold;
+    font-style: italic;
+    font-size: 24px;
+    margin-top: 32px;
+    margin-left: 19px;
+    text-transform: uppercase;
+}
+
+.cart__items__container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 318px;
+}
+.cart__item{
+    margin-top: 32px;
+    width: calc(100% - 38px);
+    display: flex;
+    height: 86px;
+}
+.cart__item__remove__btn{
+    width: 30px;
+    height: 86px;
+    padding: 0px;
+    border: 0px;
+    background-color: transparent;
+}
+
+.cart__item__remove__btn__img{
+    margin-left: -12.5px;
+    width: 20px;
+}
+
+.cart__item__desc{
+    width: calc(100% - 30px);
+    border-left: 4px solid red;
+    border-radius: 4px 0px 0px 4px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+.cart__item__numbers{
+    font-family: Helvetica Neue Bold;
+    font-style: italic;
+    display: block;
+    width: calc(100% - 8px);
+    margin-left: 13px;
+    color: $highlight_font_color;
+    word-wrap: break-word;
+}
+.cart__item__type__price{
+    
+    display: flex;
+    justify-content: right;
+    margin-left: 13px;
+}
+.cart__item__type{
+    font-family: Helvetica Neue Bold;
+    font-style: italic;
+    font-size: 16px;
+    color: red;
+}
+
+.cart__item__price{
+    margin-left: 10px;
+    font-family: Helvetica Neue Roman;
+    font-style: italic;
+    font-size: 16px;
+    color: $desc_font_color;
+}
+.cart__item__price::before{
+    content: "R$ ";
+}
+
+.cart__save__container{
+    margin-top: 45px;
+    width: 100%;
+    height: 96px;
+    background-color: #F4F4F4;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-top: 1px solid #E2E2E2;
+
+}
+.cart__save__btn{
+    
+    width: 100%;
+    height: 100%;
+    background-color: transparent;
+    border: none;
+    font-family: Helvetica Neue Bold;
+    font-style: italic;
+    color: $highlight_item_color;
+    font-size: 35px;
+    
+}
+
+.cart__save__btn:hover{
+    transition: 0.5s;
+    font-size: 38px;
+}
+
+.Save__arrow{
+    margin-left: 6px;
+    height: 22px;
+    width: 26px;
+}
+
+.cart__total__container{
+    font-family: Helvetica Neue Bold;
+    font-style: italic;
+    color: $highlight_font_color;
+    margin-top: 40px;
+    margin-left: 19px;
+    font-size: 22px;
+    display: flex;
+    align-items: center;
+    text-transform: uppercase;
+}
+
+.cart__total{
+    margin-top: 1px;
+    margin-left: 4px;
+    font-family: Helvetica Neue Roman;
+    font-style: italic;
+    font-size: 22px;
+    color: $desc_font_color;
+}
+.cart__total::before{
+    content: "Total: R$ ";
+}
+
+.bet__section{
+    margin-top: 30px;
+    overflow: hidden;
+    max-width: 800px;
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.bet__title{
+    text-transform: uppercase;
+    font-family: Helvetica Neue Bold;
+    font-style: italic;
+    color: $highlight_font_color;   
+    font-size: 24px;
+}
+
+.bet__title__span{
+    font-family: Helvetica Neue Light;
+
+}
+
+.bet__title__span::before{
+    content: "for ";
+    font-family: Helvetica Neue Light;
+
+}
+
+.bet__choose__subtitle{
+    margin-top: 30px;
+    font-family: Helvetica Neue Bold;
+    font-style: italic;
+    color: $desc_font_color;    
+}
+
+.bet__choose__container{
+    margin-top: 20px;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.bet__type__button{
+    min-width: 110px;
+    padding-left: 10px;
+    padding-right: 10px;
+    border-radius: 50px;
+    border: 2px solid red;
+    background-color: transparent;
+    height: 32px;
+    font-family: Helvetica Neue Bold;
+    font-style: italic;
+    color: red;
+    margin-right: 25px;
+}
+
+.bet__desc__initial{
+    font-family: Helvetica Neue Bold;
+    font-style: italic;
+    color: $highlight_font_color;
+    font-size: 17px;
+    margin-top: 30px;
+}
+
+.bet__desc{
+    margin-top: 2px;
+    font-family: Helvetica Neue Roman;
+    font-style: italic;
+    color: $desc_font_color;    
+}
+
+.bet__number__select{
+    margin-top: 28px;
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    height: auto;
+    flex-wrap: wrap;
+}
+.bet__number__button{
+    width: 63px;
+    height: 63px;
+    border: none;
+    background-color: #ADC0C4;
+    color: white;
+    border-radius: 50%;
+    font-size: 20px;
+    font-family: Helvetica Neue Bold;
+    margin-right: 12px;
+    margin-bottom: 12px;
+}
+
+.bet__number__button--selected{
+    background-color: $highlight_item_color;
+}
+
+.bet__options__container{
+    display: flex;
+    margin-top: 60px;
+    justify-content: space-between;
+    width: 100%;
+    height: auto;
+}
+
+.bet__options__notSubmit__buttons{
+    display: flex;
+    justify-content: center;
+    margin-bottom: 30px;
+}
+
+.bet__options__notSubmit__buttons .bet__option__button:hover{
+    display: flex;
+    justify-content: center;
+    background-color: $highlight_item_color;
+    color: white;
+    transition: 0.5s;
+}
+
+.bet__options__notSubmit__buttons .bet__option__button{
+    margin-right: 25px;
+    color:  $highlight_item_color;
+    background-color: transparent;
+    transition: 0.5s;
+}
+.error__msg{
+    font-family: Helvetica Neue Bold;
+    font-style: italic;
+    color: red;
+    margin-top: 20px;
+    font-size: 16px;
+}
+
+.bet__option__button{
+    width: auto;
+    border: 1px solid  $highlight_item_color;
+    height: 52px;
+    padding: 15px 25px 19px 25px;
+    border-radius: 10px;
+    font-family: Helvetica Neue Roman;
+    font-size: 16px;
+    color: white;
+    background-color: $highlight_item_color;
+}
+
+.footer__container{
+    height: 75px;
+    width: 100vw;
+    border-top: 2px solid #EBEBEB;
+    background-color: $background_color;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: Helvetica Neue Roman;
+    font-size: 16px;
+    color: $desc_font_color;
+}

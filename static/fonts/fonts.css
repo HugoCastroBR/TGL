@@ -1,0 +1,28 @@
+@font-face{
+    font-family: "Helvetica Neue Ultra Light";
+    src: url("./Nimbus\ Sans\ Ultra\ Light.ttf");
+}
+@font-face{
+    font-family: "Helvetica Neue Thin";
+    src: url("./Pragmatica\ Extra\ Light.ttf");
+}
+@font-face{
+    font-family: "Helvetica Neue Light";
+    src: url("./Nimbus\ Sans\ Light.ttf");
+}
+@font-face{
+    font-family: "Helvetica Neue Roman";
+    src: url("./Free\ Sans\ Regular.ttf");
+}
+@font-face{
+    font-family: "Helvetica Neue Medium";
+    src: url("./Pragmatica\ Medium.otf");
+}
+@font-face{
+    font-family: "Helvetica Neue Bold";
+    src: url("./Free\ Sans\ Bold.ttf");
+}
+@font-face{
+    font-family: "Helvetica Neue Heavy";
+    src: url("./Warownia\ Ultra.otf");
+}
