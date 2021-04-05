@@ -8,9 +8,9 @@
     // general var
     let games; // object from the games.json JSON
     let cart = [] // store the itens of the cart
-    let dataGame = [] // store the numbers of the current game
+    let dataGame = [] // store the curre game type infos
     let gameType; // store the current game type
-    let currentGame; // 
+    let currentGame; // store the numbers of the current game
 
 
     // easy life functions
@@ -267,15 +267,13 @@
          // starting a list.
         const allNumbers = document.querySelectorAll('.bet__number__button') // get all the number buttons
         
-        let randomNumbers = [...dataGame]
+        let randomNumbers = [...dataGame] // concat random numbers + data game
         while( randomNumbers.length < (currentGame['max-number'])){ // while don't have the required number of numbers
             randomNumbers.push(Math.floor(Math.random() * currentGame.range + 1)) // add a random number to the list
             randomNumbers = randomNumbers.filter((element,index) => randomNumbers.indexOf(element) === index) // remove the repeated numbers
         }
 
         dataGame = randomNumbers // change the current game
-        console.log(dataGame)
-        console.log(dataGame.length)
         allNumbers.forEach(element => { // and select the numbers(vivible)
             if(randomNumbers.includes(parseInt(element.innerHTML))){
                 element.classList.add("bet__number__button--selected")
