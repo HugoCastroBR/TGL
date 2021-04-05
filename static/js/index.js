@@ -8,23 +8,14 @@
     // general var
     let games; // object from the games.json JSON
     let cart = [] // store the itens of the cart
-    let CurrentGame = [] // store the numbers of the current game
+    let dataGame = [] // store the numbers of the current game
     let gameType; // store the current game type
-
+    let currentGame; // 
 
 
     // easy life functions
     function getAboutTheGame(type){ // get infos about the game using the type of the game
-        let resp; // initializing the result let
-        games.types.forEach(element => { // for each element in the object from the games.json
-            if(element.type == type){ 
-                resp = element // if the current element matches with the type passed
-            }
-            else{
-                return false // or pass or continue idk
-            }
-        })
-        return resp // return the  result as an object
+        currentGame = games.types.filter(element => element.type == type)[0]
     }
 
     function showError(msg){  // show the msg in the page as an error
@@ -47,7 +38,7 @@
     function resetAll(){ // reset everything that i need
         const gamesList = games.types // get a games array
         showError('') // clean the error
-        CurrentGame = [] // reset the current game to empty
+        dataGame = [] // reset the current game to empty
         document.querySelector(".bet__number__select").innerHTML = '' // get all colors to original.
         gamesList.forEach((element,index) => {
             const CurrentElement = document.querySelector(`#bet_type_btn__${index}`)
@@ -58,13 +49,15 @@
     }
 
     function refreshPrice(){ // calc the price
+        const items_container = document.querySelector(".cart__items__container") 
         const total_price = document.querySelector(".cart__total") // get the field of the price
         let currentPrice = 0 // reset de current price
         cart.forEach(element => { // for each element in cart add price to all prices
             element?currentPrice += element.price:currentPrice += 0
         })
+        if(currentPrice == 0){items_container.innerHTML = '<span class="cart__items__empty">Carrinho vazio</span>'}
 
-        total_price.innerHTML = currentPrice.toString().replace('.',',') // put the new current price into the field 
+        total_price.innerHTML = currentPrice.toFixed(2).toString().replace('.',',') // put the new current price into the field 
     }
 
     // initial and load functions
@@ -87,7 +80,7 @@
             event.preventDefault()
             randomComplete()
         })
-        
+        refreshPrice()
     }
 
 
@@ -143,7 +136,7 @@
                 <button class="bet__number__button">${element}</button>
             `
         })
-        addListeners_Numbers() // add the listener intho these buttons
+        addListeners_Numbers() // add the listener into these buttons
     }
 
 
@@ -157,9 +150,11 @@
                 event.preventDefault()
                 resetAll() // reset all i need
                 gameType = event.target.innerHTML // change the stored game type
+                // call function get about the game ( use filter get gameType x)
                 dynamicCss([event.target],['backgroundColor'],event.target.dataset.color)
                 dynamicCss([event.target],['color'],"white") // change the colors of the buttons using the color of json
                 betGenerator(event.target) // generate the numbers(buttons) of the bet and the description
+                getAboutTheGame(gameType)
             })
         })
 
@@ -172,17 +167,17 @@
         allNumbers.forEach(element => { // for each number
             element.addEventListener('click', event => { // add a function
                 event.preventDefault()
-                if(element.classList.contains("bet__number__button--selected")){ // toggle the selected button and store into currentGame
+                if(element.classList.contains("bet__number__button--selected")){ // toggle the selected button and store into dataGame
                     element.classList.remove("bet__number__button--selected")
-                    CurrentGame.splice(CurrentGame.indexOf(parseInt(element.innerHTML)),1)
+                    dataGame.splice(dataGame.indexOf(parseInt(element.innerHTML)),1)
                 }else{
                     element.classList.add("bet__number__button--selected")
-                    CurrentGame.push(parseInt(element.innerHTML))
+                    dataGame.push(parseInt(element.innerHTML))
                 }
-                if(CurrentGame.length > getAboutTheGame(gameType)['max-number']){ // if selected a number == or bigger than the max-number on json
-                    CurrentGame.pop()                                             // show an error
+                if(dataGame.length > currentGame['max-number']){ // if selected a number == or bigger than the max-number on json
+                    dataGame.pop()                                             // show an error
                     element.classList.remove("bet__number__button--selected")
-                    showError(`O maximo de numeros é de ${getAboutTheGame(gameType)['max-number']}`)
+                    showError(`O maximo de numeros é de ${currentGame['max-number']}`)
                 }
                 
                 else{
@@ -208,18 +203,20 @@
     // features functions
 
     function addToCart(){ // add the itens into the cart
-        if(CurrentGame.length < 1){ // if you had chosen just one number show this error
-            showError(`Por favor escolha ao menos um numero`)
+        if(dataGame.length != currentGame['max-number']){ // if you had chosen just one number show this error
+            showError(`Por favor escolha ${currentGame['max-number']} numeros`)
             return
         }
         const items_container = document.querySelector(".cart__items__container") // get the items container (the cart)
-        let numbers_str = CurrentGame.join(', ')  // transform the list of numbers into a string
+        let numbers_str = dataGame.join(', ')  // transform the list of numbers into a string
         cart.push({ // add these infos to the cart
-            'type':getAboutTheGame(gameType)['type'],
-            'price':getAboutTheGame(gameType)['price'],
+            'type':currentGame['type'],
+            'price':currentGame['price'],
             'numbers':numbers_str,
             'id':cart.length
         }) //  it's just the infos about the bet
+        const emptyMsg = document.querySelector(".cart__items__empty")
+        emptyMsg?emptyMsg.remove():false
         items_container.innerHTML += `
                     <div class="cart__item" id='cart_item_${cart.length - 1}'>
                         <div class="cart__item__remove__container">
@@ -229,7 +226,7 @@
                             <span class="cart__item__numbers" >${numbers_str}</span>
                             <div class="cart__item__type__price">
                                 <span class="cart__item__type" id="cart_item_${cart.length - 1}_gameType">${gameType}</span>
-                                <span class="cart__item__price">${getAboutTheGame(gameType).price.toString().replace('.',',')}</span>
+                                <span class="cart__item__price">${currentGame.price.toFixed(2).toString().replace('.',',')}</span>
                             </div>
                         </div>
                     </div>
@@ -237,9 +234,9 @@
         ` // add an item to the cart 
 
         const CurrentItem = document.querySelector(`#cart_item_${cart.length - 1}_desc`) 
-        dynamicCss([CurrentItem],['borderColor'],getAboutTheGame(gameType).color) // change the colors of the item border
+        dynamicCss([CurrentItem],['borderColor'],currentGame.color) // change the colors of the item border
         const CurrentItemName = document.querySelector(`#cart_item_${cart.length - 1}_gameType`)
-        dynamicCss([CurrentItemName],['color'],getAboutTheGame(gameType).color) // change the colors of the item text
+        dynamicCss([CurrentItemName],['color'],currentGame.color) // change the colors of the item text
         clearGame() // clean the game
         addEventListener_remove() // add the remove event into these items
         refreshPrice() // calc the price
@@ -259,23 +256,26 @@
     function clearGame(){
         const allNumbers = document.querySelectorAll('.bet__number__button') // select all number button
         allNumbers.forEach(element => element.classList.remove("bet__number__button--selected")) // remove the selected
-        CurrentGame = [] // reset the current game list
+        dataGame = [] // reset the current game list
         showError('') // clean the error
     }
 
     function randomComplete(){ 
-        clearGame() // clear the number buttons
-        let numbers = ([...Array(parseInt(getAboutTheGame(gameType)['max-number'] + 1)).keys()]) // get all numbers
+
+        let numbers = ([...Array(parseInt(currentGame['max-number'] + 1)).keys()]) // get all numbers
         numbers.shift() // remove the 0 of the numbers
-        let randomNumbers = [] // starting a list.
+         // starting a list.
         const allNumbers = document.querySelectorAll('.bet__number__button') // get all the number buttons
         
-        
-        while( randomNumbers.length < getAboutTheGame(gameType)['max-number']){ // while don't have the required number of numbers
-            randomNumbers.push(Math.floor(Math.random() * getAboutTheGame(gameType).range + 1)) // add a random number to the list
+        let randomNumbers = [...dataGame]
+        while( randomNumbers.length < (currentGame['max-number'])){ // while don't have the required number of numbers
+            randomNumbers.push(Math.floor(Math.random() * currentGame.range + 1)) // add a random number to the list
             randomNumbers = randomNumbers.filter((element,index) => randomNumbers.indexOf(element) === index) // remove the repeated numbers
         }
-        CurrentGame = randomNumbers // change the current game
+
+        dataGame = randomNumbers // change the current game
+        console.log(dataGame)
+        console.log(dataGame.length)
         allNumbers.forEach(element => { // and select the numbers(vivible)
             if(randomNumbers.includes(parseInt(element.innerHTML))){
                 element.classList.add("bet__number__button--selected")
