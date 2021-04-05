@@ -216,7 +216,7 @@
             'id':cart.length
         }) //  it's just the infos about the bet
         const emptyMsg = document.querySelector(".cart__items__empty")
-        emptyMsg?emptyMsg.remove():false
+        emptyMsg && emptyMsg.remove()
         items_container.innerHTML += `
                     <div class="cart__item" id='cart_item_${cart.length - 1}'>
                         <div class="cart__item__remove__container">
