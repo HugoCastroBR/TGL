@@ -362,11 +362,12 @@ body {
   border-radius: 50px;
   border: 2px solid #27C383;
   background-color: transparent;
-  height: 32px;
+  height: 34px;
   font-family: Helvetica Neue Bold;
   font-style: italic;
   color: #27C383;
   margin-right: 25px;
+  margin-top: 5px;
 }
 
 .bet__desc__initial {
@@ -496,5 +497,106 @@ body {
   font-family: Helvetica Neue Roman;
   font-size: 16px;
   color: #868686;
+}
+
+@media screen and (max-width: 1400px) {
+  .content__container {
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+  }
+}
+
+@media screen and (max-width: 1300px) {
+  .header__container {
+    max-width: calc(100vw - 20px);
+    padding-left: 10px;
+    padding-right: 10px;
+    overflow-x: hidden;
+  }
+  .content__container {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: reverse;
+        -ms-flex-direction: column-reverse;
+            flex-direction: column-reverse;
+    -webkit-box-pack: start;
+        -ms-flex-pack: start;
+            justify-content: flex-start;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    width: 100vw;
+    max-width: calc(100vw - 20px);
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+  .bet__section {
+    max-width: calc(100vw - 20px);
+    padding-left: 10px;
+    padding-right: 10px;
+    margin: none;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+  }
+  .bet__options__container {
+    max-width: calc(100vw - 20px);
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+    margin-bottom: 25px;
+  }
+  .bet__options__notSubmit__buttons {
+    -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+    margin-left: 24px;
+  }
+  .bet__number__select {
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    max-width: calc(100vw - 20px);
+  }
+  .footer__container {
+    max-width: calc(100vw - 20px);
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+  .bet__choose__container {
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+  }
+  .cart__container {
+    width: calc(100vw - 20px);
+  }
+  .cart__items__container {
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: row;
+            flex-direction: row;
+    -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+    width: calc(100vw - 20px);
+  }
+  .header__text {
+    font-size: 15px;
+  }
+  .header__item {
+    -ms-flex-pack: distribute;
+        justify-content: space-around;
+  }
+  .header__text--main {
+    margin-left: -24px;
+    font-size: 36px;
+  }
 }
 /*# sourceMappingURL=index.css.map */

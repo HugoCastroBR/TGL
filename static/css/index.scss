@@ -299,11 +299,12 @@ body{
     border-radius: 50px;
     border: 2px solid $highlight_item_color;
     background-color: transparent;
-    height: 32px;
+    height: 34px;
     font-family: Helvetica Neue Bold;
     font-style: italic;
     color: $highlight_item_color;
     margin-right: 25px;
+    margin-top: 5px;
 }
 
 .bet__desc__initial{
@@ -405,4 +406,80 @@ body{
     font-family: Helvetica Neue Roman;
     font-size: 16px;
     color: $desc_font_color;
+}
+
+@media screen and (max-width: 1400px){
+    .content__container{
+        justify-content: center;
+    }
+}
+
+@media screen and (max-width: 1300px){
+    .header__container{
+        max-width: calc(100vw - 20px);
+        padding-left: 10px;
+        padding-right: 10px;
+        overflow-x: hidden;
+    }
+    .content__container{
+        flex-direction: column-reverse;
+        justify-content: flex-start;
+        align-items: center;
+        width: 100vw;
+        max-width: calc(100vw - 20px);
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+    .bet__section{
+        max-width: calc(100vw - 20px);
+        padding-left: 10px;
+        padding-right: 10px;
+        margin: none;
+        justify-content: center;
+        align-items: center;
+        // margin-right: 250px  ;
+    }
+    .bet__options__container{
+        max-width: calc(100vw - 20px);
+        justify-content: center;
+        flex-wrap: wrap;
+        margin-bottom: 25px;
+    }
+    .bet__options__notSubmit__buttons{
+        flex-wrap: wrap;
+        margin-left: 24px;
+    }
+    .bet__number__select{
+        justify-content: center;
+        max-width: calc(100vw - 20px);
+    }
+
+    
+    .footer__container{
+        max-width: calc(100vw - 20px);
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+    .bet__choose__container{
+        align-items: center;
+        justify-content: center;
+    }
+    .cart__container{
+        width: calc(100vw - 20px);
+    }
+    .cart__items__container{
+        flex-direction: row;
+        flex-wrap: wrap;
+        width: calc(100vw - 20px);
+    }
+    .header__text{
+        font-size: 15px;
+    }
+    .header__item{
+        justify-content: space-around;
+    }
+    .header__text--main{
+        margin-left: -24px;
+        font-size: 36px;
+    }
 }
